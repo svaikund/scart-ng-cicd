@@ -1,6 +1,13 @@
-<h3>Shipping Prices</h3>
+<h3>Shipping Price</h3>
 
-<div class="shipping-item" *ngFor="let shipping of shippingCosts | async">
-  <span>{{ shipping.type }}</span>
-  <span>{{ shipping.price | currency }}</span>
-</div>
+<form [formGroup]="form" (ngSubmit)="submit()">
+
+  <label for="ishipping">Pick the shipping type : </label>
+
+  <select formControlName="ishipping" id="ishipping">
+    <option *ngFor="let stype of shippingCosts | async" > {{stype.type}}  &nbsp;&nbsp;  {{ stype.price | currency }}</option>
+  </select>
+  &nbsp;&nbsp;
+  <button>select</button>
+
+</form>

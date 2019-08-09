@@ -1,10 +1,9 @@
 export const environment = {
-  production: true
+  production: true,
+  ep1: 'http://localhost:8080',
+  ep2: 'http://localhost:8090',
+  ep3: 'http://localhost:8070'
 };
 
 
-/*
-Copyright Google LLC. All Rights Reserved.
-Use of this source code is governed by an MIT-style license that
-can be found in the LICENSE file at http://angular.io/license
-*/
+

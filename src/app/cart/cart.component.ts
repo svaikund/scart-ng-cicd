@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { CartService } from '../cart.service';
 import { FormBuilder } from '@angular/forms';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-cart',
@@ -11,18 +12,35 @@ export class CartComponent {
   items;
   checkoutForm;
 
-  constructor( private cartService: CartService, private formBuilder: FormBuilder, ) {
+  constructor( private cartService: CartService, private formBuilder: FormBuilder, private rtr: Router ) {
     this.items = this.cartService.getItems();
     this.checkoutForm = this.formBuilder.group({
-      name: '',
-      address: ''
+      buyerName: '',
+      shippingAddress: '',
     });
   }
-    onSubmit(customerData) {
+
+  handleClick() {
+    this.rtr.navigate(['']);
+
+  }
+
+  getRandomId() {
+    return Math.floor((Math.random() *6)+1);
+  }
+
+  onSubmit(customerData) {
     // Process checkout data here
-    console.warn('Your order has been submitted', customerData);
- 
-    this.items = this.cartService.clearCart();
-    this.checkoutForm.reset();
+    customerData.items = this.items;
+    if (customerData.items.length == 0){
+      window.alert('your cart is empty');
+    } else {
+      customerData.orderId = this.getRandomId();
+      customerData.shippingType= this.cartService.shippingType;
+      this.cartService.submitCart(customerData);
+      this.items = this.cartService.clearCart();
+      this.checkoutForm.reset();
+    }
+
   }
 }
