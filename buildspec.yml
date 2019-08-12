@@ -10,8 +10,8 @@ phases:
     commands:
       - echo Build started on `date`
       - echo Building the Docker image...          
-      - docker build -t $REPOSITORY_URI/scart-ng:latest .
+      - docker build -t $REPOSITORY_URI:latest .
   post_build:
     commands:
       - echo Pushing the Docker images...
-      - docker push $REPOSITORY_URI/scart-ng:latest
+      - docker push $REPOSITORY_URI:latest
