@@ -4,7 +4,7 @@ phases:
     commands:
       - echo Logging in to Amazon ECR...
       - aws --version
-      - $(aws ecr get-login --region ap-south-1)
+      - $(aws ecr get-login --no-include-email --region ap-south-1)
       - echo "repository uri"
       - echo $REPOSITORY_URI
       - REPOSITORY_URI=340104922532.dkr.ecr.ap-south-1.amazonaws.com/srini-ecrdo-xypqz6bqlsha/scart-ng
