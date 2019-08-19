@@ -5,7 +5,7 @@ phases:
       - echo Logging in to Amazon ECR...
       - aws --version
       - $(aws ecr get-login --no-include-email --region ap-south-1)
-      - echo $REPOSITORY_URI
+      - $REPOSITORY_URI=013581359551.dkr.ecr.ap-south-1.amazonaws.com/scart-ng-cicd
   build:
     commands:
       - echo Build started on `date`
